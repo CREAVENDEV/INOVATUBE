@@ -13,7 +13,7 @@ export function Log(){
 
             <form
              onSubmit={handleSubmit(async (values)=>{
-                
+                console.log(values)
                 const res = await registerrequest(values)
                 console.log(res)
             })}>

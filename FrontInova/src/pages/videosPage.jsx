@@ -1,12 +1,18 @@
+import axios from "axios";
 import { Link } from "react-router-dom";
+
 export function VideosPage() {
+  
   return (
     <div>
       <nav className="bg-gray-800 text-white p-4 flex justify-between items-center shadow-lg">
         <div className="text-lg font-bold">
           <ul className="flex gap-6">
             <li className="hover:text-gray-300">Nombre Usuario </li>
-            <li className="hover:text-gray-300"> <Link to={"/"}>Cerrar Sesión</Link></li>
+            <li className="hover:text-gray-300">
+              {" "}
+              <Link to={"/"}>Cerrar Sesión</Link>
+            </li>
           </ul>
         </div>
       </nav>

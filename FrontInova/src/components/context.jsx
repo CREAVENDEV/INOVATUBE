@@ -39,15 +39,10 @@ export const ContextoProvider = ({children}) =>{
       }  
     };
 
-    const closer = async (user) => {
-        userState(user);
-        SetAutentificated(false);
-      
-    };
 
 
     return (
-      <Micontexto.Provider value={{ user, Sigup, sigin,closer, isAutentificated }}>
+      <Micontexto.Provider value={{ user, Sigup, sigin, isAutentificated,SetAutentificated}}>
         {children}
       </Micontexto.Provider>
     );

@@ -14,10 +14,12 @@ export function Registrer(){
     }, [isAutentificated])
 
     const password = watch("password"); /*Se usa para declarar el widget a evaluar */
-    const onSub =handleSubmit(async (values) => {
+
+    const onSub =handleSubmit( (values) => {
       console.log(values)
       Sigup(values)
     })
+    
     return (
       <div className="bg-zinc-800 max-w-md p-10 rounded-md mt-40 mx-130">
         <h1>Registrece por favor</h1>

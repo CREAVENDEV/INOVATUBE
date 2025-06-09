@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'InnovaTube.wsgi.application'
 
 DATABASES = {
      'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL'),
+        default=os.environ.get('DATABASE_URL=postgres://backendbdd_user:xWTCDjfqWOqpfSzF8PKHuAveVr9v6uSP@dpg-d13hgcm3jp1c73bshuqg-a:5432/db'),
         conn_max_age=600,
         ssl_require=True
     )

@@ -80,20 +80,29 @@ WSGI_APPLICATION = 'InnovaTube.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
+
+DATABASE_URL='postgres://backendbdd_user:xWTCDjfqWOqpfSzF8PKHuAveVr9v6uSP@dpg-d13hgcm3jp1c73bshuqg-a:5432/backendbdd'
+
+import os
 import dj_database_url
-DATABASE_URL='postgres://backendbdd_user:xWTCDjfqWOqpfSzF8PKHuAveVr9v6uSP@dpg-d13hgcm3jp1c73bshuqg-a/backendbdd'
 
 DATABASES = {
-     'default': dj_database_url.config(
-        default=os.environ.get(DATABASE_URL),
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL'),  # Ahora es una cadena válida
         conn_max_age=600,
         ssl_require=True
     )
-
-    
-    
-    
 }
+
+
+
+
+
+
+
+
+
+
 
 
 # Password validation

@@ -4,6 +4,7 @@ import {Home} from './pages/homepage';
 import {Log} from './pages/login';
 import {VideosPage} from './pages/videosPage';
 import {Registrer} from './pages/registrer';
+/*Lanzar*/
 
 
 

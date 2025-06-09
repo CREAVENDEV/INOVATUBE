@@ -66,7 +66,7 @@ export function VideosPage() {
  <ul>
    {videos.map((video) => (
      <div >
-     <li  key={video.id.videoId}>{<YouTube className='w-10 p-15 mt-1 mx-200' videoId={video.id.videoId}/>}</li>
+     <li className="m-1" key={video.id.videoId}>{<YouTube className="m-1 p-20 w-40" videoId={video.id.videoId}/>}</li>
      </div>
    ))}
  </ul>

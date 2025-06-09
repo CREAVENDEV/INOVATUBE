@@ -1,43 +1,41 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from .models import User
+from .serializer import RegisterSerializer, LoginSerializer, UserSerializer
+from django.contrib.auth import login
+from rest_framework.generics import ListAPIView
+from rest_framework.permissions import IsAdminUser
 
-from .models import Modelusurios,Model_Productos
-from .serializer import Serializer_User,Serializer_Productos
 
-####  6LfK4lMrAAAAAJ4xaL_L93KhsD29zAmpfewfHu6g Token re Catcha
 
-##### USUARIOS
-class Users_Vista(APIView):
-    def get(self, request):
-        usuarios=Modelusurios.objects.all()
-        serializer = Serializer_User(usuarios, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
 
+
+####  6LfK4lMrAAAAAJ4xaL_L93KhsD29zAmpfewfHu6g Token re Catc
+
+ #### views Login 
+class RegisterView(APIView):
     def post(self, request):
-        serializer = Serializer_User(data=request.data)
+        serializer = RegisterSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()  # Guarda el nuevo producto en la base de datos
+            serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-##### USUARIOS #### 
-class Productos_Vista(APIView):
-    def get(self, request):
-        productos=Model_Productos.objects.all()
-        serializer = Serializer_Productos(productos, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
-
+class LoginView(APIView):
     def post(self, request):
-        serializer = Serializer_Productos(data=request.data)
+        serializer = LoginSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()  # Guarda el nuevo producto en la base de datos
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response(serializer.validated_data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-  
+    
       
-      
+##### Vista insert en registrer
 
+class UserListView(ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [IsAdminUser]
     
       
       

@@ -1,15 +1,29 @@
 from rest_framework import serializers
-from .models import Modelusurios,Model_Productos
+from django.contrib.auth import authenticate
+from .models import  User
 
-
-class Serializer_User(serializers.ModelSerializer):
+########### Serializers login
+class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
-        db_table = 'usuarios'
-        model=Modelusurios
-        fields = '__all__'
+        model = User
+        fields = ('email', 'password')
+        extra_kwargs = {'password': {'write_only': True}}
 
-class Serializer_Productos(serializers.ModelSerializer):
+    
+    
+
+class LoginSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    password = serializers.CharField(write_only=True)
+
+   
+   
+   
+   
+   
+
+#### Listar users 
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        db_table = 'productos'
-        model=Model_Productos
-        fields = '__all__'
+        model = User
+        fields = ('id', 'email', 'is_active', 'is_admin')

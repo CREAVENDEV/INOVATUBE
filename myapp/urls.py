@@ -1,11 +1,17 @@
 from django.urls import path, include
-from .views import Users_Vista,Productos_Vista
+from .views import RegisterView, LoginView,UserListView
+
 
 
 urlpatterns = [
-    path('Users/', Users_Vista.as_view(), name='Users'),
-    path('productos/', Productos_Vista.as_view(), name='productos'),
+    path('register/', RegisterView.as_view(), name='register'),
+    path('login/', LoginView.as_view(), name='login'),
+    path('usuarios/', UserListView.as_view(), name='user-list'),
+
+
 ]
+
+
 
 
 

@@ -1,29 +1,34 @@
 import {Link} from "react-router-dom"
 import { useForm }  from "react-hook-form"
-
-import {registerrequest} from '../api/auth'
+import { useState, useEffect } from "react";
+import { UseAuth } from "../components/context";
+import {useNavigate} from 'react-router-dom'
 
 export function Registrer(){
     const {register,handleSubmit,watch,formState:{errors}} = useForm()
-    const password = watch("password"); /*Se usa para declarar el widget a evaluar */
+    const { Sigup, isAutentificated } = UseAuth();
+    const navigation =useNavigate()
+    
+    useEffect(() => {
+      if (isAutentificated) navigation("/videos")
+    }, [isAutentificated])
 
+    const password = watch("password"); /*Se usa para declarar el widget a evaluar */
+    const onSub =handleSubmit(async (values) => {
+      console.log(values)
+      Sigup(values)
+    })
     return (
       <div className="bg-zinc-800 max-w-md p-10 rounded-md mt-40 mx-130">
         <h1>Registrece por favor</h1>
         <link href="/src/index.css" rel="stylesheet"></link>
 
-        <form
-          onSubmit={handleSubmit(async (values) => {
-            const res = await registerrequest(values);
-            alert("¡Registro exitoso!");
-
-          })}
-        >
+        <form onSubmit={onSub}>
           <input
-            type="text"
-            {...register("nombre", { required: true })}
-            className="w-full bg-zinc-700  text-white px-4 py-2 rounded-md my-2"
-            placeholder="Username"
+            type="email"
+            {...register("email", { required: true })}
+            className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2"
+            placeholder="Email"
           />
 
           <input
@@ -34,25 +39,27 @@ export function Registrer(){
             className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2"
             placeholder="Pass"
           />
-          {errors.password && <p>{errors.password.message}</p>}
+          {errors.password && (
+            <p className="w-full bg-red-700 text-white px-4 py-2 rounded-md my-2">
+              {errors.password.message}
+            </p>
+          )}
 
           <input
             type="password"
             {...register("confirmPassword", {
               required: "Debes confirmar la contraseña",
-              validate: (value) => value === password || "Las Contraseñas no coinciden"
+              validate: (value) =>
+                value === password || "Las Contraseñas no coinciden",
             })}
             className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2"
             placeholder="Confirm Pass"
           />
-          {errors.confirmPassword && <p>{errors.confirmPassword.message}</p>}
-
-          <input
-            type="email"
-            {...register("correo", { required: true })}
-            className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2"
-            placeholder="Email"
-          />
+          {errors.confirmPassword && (
+            <p className="w-full bg-red-700 text-white px-4 py-2 rounded-md my-2">
+              {errors.confirmPassword.message}
+            </p>
+          )}
 
           <button
             type="submit"

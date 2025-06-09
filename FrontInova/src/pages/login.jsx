@@ -6,6 +6,7 @@ import { UseAuth } from "../components/context";
 import { loginRequest } from "../api/auth";
 
 
+
 export function Log(){
   const { register, handleSubmit } = useForm();
   const navigation =useNavigate()  
@@ -17,14 +18,23 @@ export function Log(){
   }, [isAutentificated]);
 
  
- 
- 
- 
- 
   const inSub = handleSubmit(async (values) => {
     sigin(values)
     console.log(values)
     });
+
+    function onChange(value) {
+    setCaptchaValue(value);
+    console.log("Captcha value:", value);
+  }
+
+    function handleLogin(data) {
+    if (!captchaValue) {
+      alert("Por favor, completa el reCAPTCHA.");
+      return;
+    }
+    console.log("Datos del formulario:", data);
+  }
 
   /// Funciones de integracion con Re Catcha
   return (
@@ -44,7 +54,10 @@ export function Log(){
           placeholder="Pass"
         />
        
-       
+        <ReCAPTCHA
+          sitekey="6LfK4lMrAAAAAElrnGsqvpg4JKae9jZcS7hrMFSA"
+          onChange={onChange}
+        />
        
        
         <button

@@ -16,7 +16,6 @@ export function Registrer(){
     const password = watch("password"); /*Se usa para declarar el widget a evaluar */
 
     const onSub =handleSubmit( (values) => {
-      console.log(values)
       Sigup(values)
     })
     
@@ -31,6 +30,20 @@ export function Registrer(){
             {...register("email", { required: true })}
             className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2"
             placeholder="Email"
+          />
+
+          <input
+            type="Nombre"
+            {...register("first_name", { required: true })}
+            className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2"
+            placeholder="Name"
+          />
+
+          <input
+            type="Apellido"
+            {...register("last_name", { required: true })}
+            className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2"
+            placeholder="Lats Name"
           />
 
           <input

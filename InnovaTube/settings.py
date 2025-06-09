@@ -81,11 +81,11 @@ WSGI_APPLICATION = 'InnovaTube.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 import dj_database_url
-DATABASE_URL='DATABASE_URL=postgresql://backendbdd_user:xWTCDjfqWOqpfSzF8PKHuAveVr9v6uSP@dpg-d13hgcm3jp1c73bshuqg-a/backendbdd'
+DATABASE_URL='DATABASE_URL=postgres://backendbdd_user:xWTCDjfqWOqpfSzF8PKHuAveVr9v6uSP@dpg-d13hgcm3jp1c73bshuqg-a/backendbdd'
 
 DATABASES = {
      'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL'),
+        default=os.environ.get(DATABASE_URL),
         conn_max_age=600,
         ssl_require=True
     )
